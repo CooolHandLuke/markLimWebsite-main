@@ -10,11 +10,11 @@
     <!-- Fullscreen Video Layer -->
     <div class="reel" aria-hidden="true">
       <video
-        src="./assets/video/ELLAHUNT_LONG_ONLINE_16x9.mp4"
+        src="./assets/img/video/directingreel.mov"
         autoplay
-        muted
         loop
         playsinline
+        data-reel-video
       ></video>
     </div>
 
@@ -29,6 +29,16 @@
           data-menu-btn
         >
           <span class="bar" aria-hidden="true"></span>
+        </button>
+
+        <button
+          class="reel-audio-btn"
+          type="button"
+          aria-label="Mute reel audio"
+          aria-pressed="false"
+          data-audio-btn
+        >
+          <span class="reel-audio-btn__label" data-audio-label>ON</span>
         </button>
       </header>
     </div>
@@ -46,5 +56,6 @@
     </div>
 
     <script src="./js/menu.js"></script>
+    <script src="./js/reel.js"></script>
   </body>
 </html>

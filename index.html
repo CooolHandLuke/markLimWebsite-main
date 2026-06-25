@@ -6,7 +6,7 @@
     <title>Mark Lim — Work</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body>
+  <body class="work-page">
     <div class="page">
       <header class="site-header">
         <h1 class="brand">MARK LIM</h1>
@@ -22,20 +22,11 @@
       </header>
 
       <main class="main">
-        <section class="work-grid" aria-label="Selected work">
-          <figure>
-            <img src="./assets/img/image 1 left.jpg" alt="Work image 1" />
-          </figure>
-          <figure>
-            <img src="./assets/img/image 1 right.jpg" alt="Work image 2" />
-          </figure>
-          <figure>
-            <img src="./assets/img/image 2 left.jpg" alt="Work image 3" />
-          </figure>
-          <figure>
-            <img src="./assets/img/image 2 right.jpg" alt="Work image 4" />
-          </figure>
-        </section>
+        <section
+          class="work-grid"
+          aria-label="Selected work"
+          data-work-grid
+        ></section>
       </main>
     </div>
 
@@ -52,5 +43,6 @@
     </div>
 
     <script src="./js/menu.js"></script>
+    <script src="./js/work-grid.js"></script>
   </body>
 </html>

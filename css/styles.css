@@ -57,6 +57,13 @@ body {
   padding-right: var(--side-pad);
 }
 
+.work-page .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 .brand {
   text-align: center;
   font-family: "ZaiKinematografi", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -118,19 +125,32 @@ body {
   padding: 100px var(--side-pad) 64px;
 }
 
+.work-page .main {
+  padding-top: calc(var(--header-top-pad) + 280px);
+}
+
 /* --------------------
    WORK page (2 images side-by-side)
 --------------------- */
 .work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-auto-flow: row dense;
   gap: 28px;
   align-items: start;
   margin-top: 0;
 }
 
+.work-page .work-grid {
+  margin-top: 56px;
+}
+
 .work-grid figure {
   margin: 0;
+}
+
+.work-grid figure.work-item-landscape {
+  grid-column: 1 / -1;
 }
 
 .work-grid img {
@@ -285,6 +305,36 @@ body {
   background: var(--bg);
 }
 
+.reel-audio-btn {
+  position: fixed;
+  right: var(--side-pad);
+  bottom: 34px;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 999px;
+  background: var(--red);
+  color: var(--bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.reel-audio-btn__label {
+  font-family: "ZaiKinematografi", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1;
+  transform: translateY(1px);
+}
+
+.reel-audio-btn:focus {
+  outline: none;
+}
+
 /* --------------------
    Menu Overlay
 --------------------- */
@@ -348,6 +398,7 @@ body {
 @media (max-width: 900px) {
   .brand { font-size: 44px; }
   .work-grid { grid-template-columns: 1fr; gap: 28px; }
+  .work-page .main { padding-top: calc(var(--header-top-pad) + 60px); }
   .about-title { font-size: 62px; }
   .menu-links a { font-size: 56px; }
   .contact-word { font-size: 45px; }
@@ -360,7 +411,11 @@ body {
     font-size: 32px; 
     letter-spacing: 4px;
   }
+  .work-page .main {
+    padding-top: 116px;
+  }
   .menu-btn { right: var(--side-pad); }
+  .reel-audio-btn { bottom: 18px; }
   .menu-inner { padding-top: 120px; }
   .menu-links a { font-size: 40px; }
   .about-title { 
