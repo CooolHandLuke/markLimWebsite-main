@@ -1,0 +1,401 @@
+/* --------------------
+   Fonts
+--------------------- */
+@font-face {
+  font-family: "ZaiKinematografi";
+  src: url("../assets/zai_KinematografiaPolska1908solid.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TypoRing";
+  src: url("../assets/Typo Ring Regular Demo.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* --------------------
+   Base
+--------------------- */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --red: #e53935;
+
+  --max-width: 1600px;
+  --header-top-pad: 80px;
+  --side-pad: 44px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: "TypoRing", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* --------------------
+   Header / Layout
+--------------------- */
+.page {
+  min-height: 100vh;
+  position: relative;
+}
+
+.site-header {
+  position: relative;
+  z-index: 100;
+  padding-top: var(--header-top-pad);
+  padding-left: var(--side-pad);
+  padding-right: var(--side-pad);
+}
+
+.brand {
+  text-align: center;
+  font-family: "ZaiKinematografi", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 54px;
+  letter-spacing: 3px;
+  line-height: 1;
+  margin: 0;
+  user-select: none;
+}
+
+/* Red dot button */
+.menu-btn {
+  position: absolute;
+  top: var(--header-top-pad);
+  right: var(--side-pad);
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: var(--red);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  overflow: visible;
+}
+
+.menu-btn:focus {
+  outline: none;
+}
+
+/* The "white bar" appears in OPEN state to match screenshot */
+.menu-btn .bar {
+  width: 50px;
+  height: 10px;
+  background: var(--bg);
+  opacity: 0;
+  border-radius: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: opacity 280ms ease, transform 280ms ease;
+  margin-left: -92px;
+}
+
+.menu-btn.is-open .bar {
+  opacity: 1;
+  transform: scaleX(1);
+  transition-duration: 180ms;
+  transition-delay: 120ms;
+}
+
+/* --------------------
+   Main content wrapper
+--------------------- */
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 100px var(--side-pad) 64px;
+}
+
+/* --------------------
+   WORK page (2 images side-by-side)
+--------------------- */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 0;
+}
+
+.work-grid figure {
+  margin: 0;
+}
+
+.work-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --------------------
+   ABOUT page (centered typography)
+--------------------- */
+.about-wrap {
+  min-height: calc(100vh - 140px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.about-title {
+  font-family: "TypoRing", system-ui, sans-serif;
+  font-size: 86px;
+  letter-spacing: 2px;
+  line-height: 0.95;
+  margin: 0 0 18px;
+}
+
+.about-sub {
+  font-family: "TypoRing", system-ui, sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* --------------------
+   CONTACT page
+--------------------- */
+.contact-wrap {
+  min-height: calc(100vh - 140px);
+  display: grid;
+  place-items: center;
+}
+
+.contact-page .page {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-page .main {
+  flex: 1;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  padding: 0 var(--side-pad);
+}
+
+.contact-page .contact-wrap {
+  min-height: auto;
+  transform: translateY(-44px);
+}
+
+.contact-row {
+  display: flex;
+  gap: 44px;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: nowrap;
+}
+
+.contact-item {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-template-areas:
+    "word me"
+    "sub .";
+  align-items: end;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 2px;
+}
+
+.contact-word {
+  grid-area: word;
+  font-family: "TypoRing", system-ui, sans-serif;
+  font-size: 54px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 0.95;
+}
+
+.contact-me {
+  grid-area: me;
+  font-family: "TypoRing", system-ui, sans-serif;
+  font-size: 34px;
+  font-weight: 100;
+  letter-spacing: 0.2px;
+}
+
+.contact-sub {
+  grid-area: sub;
+  justify-self: center;
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.contact-item a {
+  color: inherit;
+  text-decoration: none;
+}
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------
+   REEL page (full-screen video)
+--------------------- */
+.reel {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 0;
+}
+
+.reel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* change to 'contain' if you want letterbox instead */
+  display: block;
+}
+
+/* Keep header/menu above video */
+.reel-page .site-header {
+  position: relative;
+  z-index: 60;
+}
+
+.reel-page .brand {
+  color: #000; /* your screenshot is black over a light video frame */
+}
+
+.reel-page .menu-btn .bar {
+  background: transparent;
+}
+
+.reel-page .menu-btn.is-open .bar {
+  background: var(--bg);
+}
+
+/* --------------------
+   Menu Overlay
+--------------------- */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 50;
+
+  /* fade-in */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 400ms ease, visibility 0s linear 400ms;
+}
+
+.menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 400ms ease;
+}
+
+.menu-inner {
+  height: 100%;
+  padding: 0 var(--side-pad) 0 calc(var(--side-pad) + 40px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.menu-links {
+  display: grid;
+  gap: 10px;
+  transition: opacity 220ms ease, transform 220ms ease;
+  will-change: opacity, transform;
+}
+
+.menu-overlay.is-navigating .menu-links {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.menu-links a {
+  font-family: "TypoRing", system-ui, sans-serif;
+  font-size: 78px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #000;
+  line-height: 0.95;
+}
+
+.menu-links a:hover {
+  opacity: 0.75;
+}
+
+/* --------------------
+   Responsive
+--------------------- */
+@media (max-width: 900px) {
+  .brand { font-size: 44px; }
+  .work-grid { grid-template-columns: 1fr; gap: 28px; }
+  .about-title { font-size: 62px; }
+  .menu-links a { font-size: 56px; }
+  .contact-word { font-size: 45px; }
+  .contact-me { font-size: 30px; }
+}
+
+@media (max-width: 520px) {
+  :root { --side-pad: 18px; }
+  .brand { 
+    font-size: 32px; 
+    letter-spacing: 4px;
+  }
+  .menu-btn { right: var(--side-pad); }
+  .menu-inner { padding-top: 120px; }
+  .menu-links a { font-size: 40px; }
+  .about-title { 
+    font-size: 48px; 
+  }
+  .about-sub { 
+    font-size: 14px; 
+  }
+  .about-wrap {
+    min-height: auto;
+    padding: 40px 0;
+  }
+  .contact-wrap {
+    min-height: auto;
+    padding: 40px 0;
+  }
+  .contact-row {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .contact-word { 
+    font-size: 32px;
+  }
+  .contact-me { 
+    font-size: 22px;
+  }
+  .contact-sub { 
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: center;
+    font-size: 14px; 
+  }
+  .contact-item {
+    width: min(100%, 16rem);
+    column-gap: 8px;
+    row-gap: 8px;
+  }
+}
