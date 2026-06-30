@@ -26,6 +26,7 @@
   --max-width: 1600px;
   --header-top-pad: 80px;
   --side-pad: 44px;
+  --brand-size: 54px;
 }
 
 * { box-sizing: border-box; }
@@ -67,7 +68,7 @@ body {
 .brand {
   text-align: center;
   font-family: "ZaiKinematografi", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 54px;
+  font-size: var(--brand-size);
   letter-spacing: 3px;
   line-height: 1;
   margin: 0;
@@ -77,7 +78,7 @@ body {
 /* Red dot button */
 .menu-btn {
   position: absolute;
-  top: var(--header-top-pad);
+  top: calc(var(--header-top-pad) + (var(--brand-size) - 46px) / 2);
   right: var(--side-pad);
   width: 46px;
   height: 46px;
@@ -85,35 +86,40 @@ body {
   background: var(--red);
   border: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  display: block;
   padding: 0;
-  overflow: visible;
+  overflow: hidden;
+  --split-gap: 10px;
 }
 
 .menu-btn:focus {
   outline: none;
 }
 
-/* The "white bar" appears in OPEN state to match screenshot */
-.menu-btn .bar {
-  width: 50px;
-  height: 10px;
-  background: var(--bg);
-  opacity: 0;
-  border-radius: 0;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: opacity 280ms ease, transform 280ms ease;
-  margin-left: -92px;
+/* Keep red base constant and fade white center split in/out */
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  transition: opacity 180ms linear;
 }
 
-.menu-btn.is-open .bar {
+.menu-btn::after {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--split-gap);
+  transform: translateY(-50%);
+  background: var(--bg);
+  border-radius: 0;
+  opacity: 0;
+}
+
+.menu-btn.is-open::after {
   opacity: 1;
-  transform: scaleX(1);
-  transition-duration: 180ms;
-  transition-delay: 120ms;
+}
+
+.menu-btn .bar {
+  display: none;
 }
 
 /* --------------------
@@ -126,7 +132,8 @@ body {
 }
 
 .work-page .main {
-  padding-top: calc(var(--header-top-pad) + 280px);
+  max-width: 1760px;
+  padding-top: calc(var(--header-top-pad) + 96px);
 }
 
 /* --------------------
@@ -135,18 +142,27 @@ body {
 .work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-flow: row dense;
-  gap: 28px;
+  grid-auto-flow: row;
+  gap: 50px;
   align-items: start;
   margin-top: 0;
 }
 
 .work-page .work-grid {
-  margin-top: 56px;
+  margin-top: 10px;
 }
 
 .work-grid figure {
   margin: 0;
+}
+
+.work-grid figure.is-deferred {
+  opacity: 0;
+  transition: opacity 100ms linear;
+}
+
+.work-grid figure.is-visible {
+  opacity: 1;
 }
 
 .work-grid figure.work-item-landscape {
@@ -297,18 +313,10 @@ body {
   color: #000; /* your screenshot is black over a light video frame */
 }
 
-.reel-page .menu-btn .bar {
-  background: transparent;
-}
-
-.reel-page .menu-btn.is-open .bar {
-  background: var(--bg);
-}
-
 .reel-audio-btn {
   position: fixed;
   right: var(--side-pad);
-  bottom: 34px;
+  bottom: calc(var(--header-top-pad) + (var(--brand-size) - 46px) / 2);
   z-index: 40;
   width: 46px;
   height: 46px;
@@ -396,7 +404,7 @@ body {
    Responsive
 --------------------- */
 @media (max-width: 900px) {
-  .brand { font-size: 44px; }
+  :root { --brand-size: 44px; }
   .work-grid { grid-template-columns: 1fr; gap: 28px; }
   .work-page .main { padding-top: calc(var(--header-top-pad) + 60px); }
   .about-title { font-size: 62px; }
@@ -406,16 +414,17 @@ body {
 }
 
 @media (max-width: 520px) {
-  :root { --side-pad: 18px; }
+  :root {
+    --side-pad: 18px;
+    --brand-size: 32px;
+  }
   .brand { 
-    font-size: 32px; 
     letter-spacing: 4px;
   }
   .work-page .main {
     padding-top: 116px;
   }
   .menu-btn { right: var(--side-pad); }
-  .reel-audio-btn { bottom: 18px; }
   .menu-inner { padding-top: 120px; }
   .menu-links a { font-size: 40px; }
   .about-title { 
