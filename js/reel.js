@@ -5,6 +5,16 @@
 
   if (!video || !button || !label) return;
 
+  let reelAudioIntent = false;
+  try {
+    reelAudioIntent = sessionStorage.getItem("reelAudioIntent") === "1";
+    if (reelAudioIntent) {
+      sessionStorage.removeItem("reelAudioIntent");
+    }
+  } catch {
+    reelAudioIntent = false;
+  }
+
   const setAudioState = (isMuted) => {
     video.muted = isMuted;
     button.setAttribute("aria-pressed", String(isMuted));
@@ -79,5 +89,14 @@
   });
   window.addEventListener("keydown", onFirstInteractionEnableAudio);
   syncAudioState();
-  void tryAutoplayWithSound();
+
+  if (reelAudioIntent) {
+    // Triggered from explicit REEL navigation click.
+    void tryAutoplayWithSound();
+    requestAnimationFrame(() => {
+      void tryAutoplayWithSound();
+    });
+  } else {
+    void tryAutoplayWithSound();
+  }
 })();

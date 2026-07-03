@@ -41,6 +41,21 @@
   overlay.addEventListener("click", (e) => {
     const link = e.target.closest("a");
     if (link && !isNavigating) {
+      const href = link.getAttribute("href") || "";
+      const isReelLink = /reel\.html(?:[?#].*)?$/.test(href);
+
+      if (isReelLink) {
+        try {
+          sessionStorage.setItem("reelAudioIntent", "1");
+        } catch {
+          // Ignore storage access failures (private mode / strict settings).
+        }
+
+        closeMenu();
+        window.location.assign(link.href);
+        return;
+      }
+
       e.preventDefault();
       isNavigating = true;
       btn.classList.remove("is-open");
