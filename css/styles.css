@@ -283,7 +283,7 @@ body {
   text-decoration: none;
 }
 .contact-item a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* --------------------
@@ -415,6 +415,7 @@ body {
 
 @media (max-width: 520px) {
   :root {
+    --header-top-pad: 24px;
     --side-pad: 18px;
     --brand-size: 32px;
   }
