@@ -43,7 +43,8 @@ body {
 }
 
 body.about-page,
-body.contact-page {
+body.contact-page,
+body.reel-page {
   overflow: hidden;
 }
 
